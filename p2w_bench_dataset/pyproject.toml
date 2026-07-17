@@ -1,0 +1,9 @@
+[project]
+name = "p2w-bench-dataset"
+version = "0.2.0"
+description = "Reproducible bilingual dataset pipeline for prompt-to-weight evaluation"
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.ruff]
+line-length = 120

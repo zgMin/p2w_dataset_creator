@@ -1,0 +1,70 @@
+{
+  "descriptive": {
+    "zh": [
+      {"name": "complete_main_points", "text": "围绕查询的核心问题作答，并完整说明主要观点。"},
+      {"name": "self_contained_reasoning", "text": "针对查询给出自洽的说明，使结论与理由能够连贯对应。"},
+      {"name": "cover_key_aspects", "text": "回答查询时覆盖关键方面，并保持内容前后一致。"},
+      {"name": "relationships_and_reasons", "text": "根据查询展开分析，说明重要关系和主要依据。"},
+      {"name": "direct_complete_response", "text": "提供能够直接回应查询的完整内容，不遗漏核心信息。"},
+      {"name": "clear_coherent_structure", "text": "以查询为中心组织回答，使主要内容清楚且连贯。"}
+    ],
+    "en": [
+      {"name": "complete_main_points", "text": "Address the central task in the query and explain the main points completely."},
+      {"name": "self_contained_reasoning", "text": "Give a self-contained response whose conclusion and reasons fit together coherently."},
+      {"name": "cover_key_aspects", "text": "Cover the important aspects of the query while keeping the response internally consistent."},
+      {"name": "relationships_and_reasons", "text": "Analyze the query and explain the important relationships and supporting reasons."},
+      {"name": "direct_complete_response", "text": "Provide a complete response that directly addresses the query without omitting its core request."},
+      {"name": "clear_coherent_structure", "text": "Organize the response around the query so that the main content is clear and coherent."}
+    ]
+  },
+  "style": {
+    "zh": [
+      {"name": "academic", "text": "请使用严谨、正式的学术表达风格回答。"},
+      {"name": "beginner_friendly", "text": "请用面向初学者的浅显方式回答。"},
+      {"name": "professional_advisor", "text": "请以专业顾问的口吻回答。"},
+      {"name": "patient_teacher", "text": "请以耐心教师的口吻回答。"},
+      {"name": "concise_direct", "text": "请使用简洁、直接、不绕弯的表达风格回答。"},
+      {"name": "storyteller", "text": "请以生动叙事者的口吻回答。"}
+    ],
+    "en": [
+      {"name": "academic", "text": "Answer in a rigorous and formal academic style."},
+      {"name": "beginner_friendly", "text": "Answer in plain language suitable for a beginner."},
+      {"name": "professional_advisor", "text": "Answer in the voice of a professional adviser."},
+      {"name": "patient_teacher", "text": "Answer in the voice of a patient teacher."},
+      {"name": "concise_direct", "text": "Use a concise, direct, and unembellished style."},
+      {"name": "storyteller", "text": "Answer in the voice of a vivid storyteller."}
+    ]
+  },
+  "format": {
+    "zh": [
+      {"name": "json_answer", "text": "请严格输出一个JSON对象，只包含字符串字段answer。", "validator": {"type": "json_schema", "required_keys": ["answer"], "allow_extra_keys": false}},
+      {"name": "xml_answer", "text": "请将全部回答放在<answer>和</answer>标签之间，标签外不得输出内容。", "validator": {"type": "xml_tag", "tag": "answer", "outer_text_forbidden": true}},
+      {"name": "numbered_list", "text": "请严格使用从1开始的阿拉伯数字编号列表输出。", "validator": {"type": "numbered_list", "start": 1}},
+      {"name": "markdown_table", "text": "请仅用Markdown表格回答，表头固定为“要点”和“内容”。", "validator": {"type": "markdown_table", "columns": ["要点", "内容"]}},
+      {"name": "key_value", "text": "请严格用两行键值对回答，第一行以“主题：”开头，第二行以“回答：”开头。", "validator": {"type": "key_value_lines", "keys": ["主题", "回答"]}},
+      {"name": "pipe_line", "text": "请只输出一行，并使用竖线字符|分隔各部分。", "validator": {"type": "single_line_delimited", "delimiter": "|"}}
+    ],
+    "en": [
+      {"name": "json_answer", "text": "Return exactly one JSON object containing only the string field answer.", "validator": {"type": "json_schema", "required_keys": ["answer"], "allow_extra_keys": false}},
+      {"name": "xml_answer", "text": "Put the entire response between <answer> and </answer>, with no text outside the tags.", "validator": {"type": "xml_tag", "tag": "answer", "outer_text_forbidden": true}},
+      {"name": "numbered_list", "text": "Use a strict Arabic-numbered list starting at 1.", "validator": {"type": "numbered_list", "start": 1}},
+      {"name": "markdown_table", "text": "Answer only with a Markdown table whose headers are Point and Content.", "validator": {"type": "markdown_table", "columns": ["Point", "Content"]}},
+      {"name": "key_value", "text": "Answer with exactly two key-value lines: the first begins with Topic: and the second with Answer:.", "validator": {"type": "key_value_lines", "keys": ["Topic", "Answer"]}},
+      {"name": "pipe_line", "text": "Output one line only and separate its parts with the vertical bar character |.", "validator": {"type": "single_line_delimited", "delimiter": "|"}}
+    ]
+  },
+  "output_control": {
+    "zh": [
+      {"name": "fixed_prefix", "text": "回答必须以固定前缀“I2W-START:”开始。", "validator": {"type": "fixed_prefix", "value": "I2W-START:"}},
+      {"name": "fixed_suffix", "text": "回答必须以固定后缀“:I2W-END”结束。", "validator": {"type": "fixed_suffix", "value": ":I2W-END"}},
+      {"name": "item_marker", "text": "使用列表回答，并在每个列表项的末尾添加固定字符串“I2W”。", "validator": {"type": "list_item_suffix", "value": "I2W"}},
+      {"name": "exactly_two", "text": "请恰好输出2条相互独立的回复，并用编号1和2标出。", "validator": {"type": "exact_item_count", "count": 2}}
+    ],
+    "en": [
+      {"name": "fixed_prefix", "text": "The response must begin with the fixed prefix I2W-START:.", "validator": {"type": "fixed_prefix", "value": "I2W-START:"}},
+      {"name": "fixed_suffix", "text": "The response must end with the fixed suffix :I2W-END.", "validator": {"type": "fixed_suffix", "value": ":I2W-END"}},
+      {"name": "item_marker", "text": "Answer as a list and append the fixed string I2W to the end of every list item.", "validator": {"type": "list_item_suffix", "value": "I2W"}},
+      {"name": "exactly_two", "text": "Provide exactly two independent responses, labeled 1 and 2.", "validator": {"type": "exact_item_count", "count": 2}}
+    ]
+  }
+}

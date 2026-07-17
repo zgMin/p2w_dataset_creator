@@ -1,0 +1,29 @@
+{
+  "version": "1.1.0",
+  "seed": 20260715,
+  "row_count": 96,
+  "query_count": 96,
+  "counts_by_language": {
+    "en": 48,
+    "zh": 48
+  },
+  "counts_by_source": {
+    "cmrc2018": 23,
+    "drcd": 23,
+    "natural_questions": 12,
+    "relation_extraction": 12,
+    "squad": 10,
+    "synthetic": 4,
+    "triviaqa": 12
+  },
+  "requested_additional_counts": {
+    "natural_questions": 12,
+    "triviaqa": 12,
+    "relation_extraction": 12,
+    "cmrc2018": 18,
+    "drcd": 18
+  },
+  "capacity_report": "capacity_report.json",
+  "public_query_count": 92,
+  "output_sha256": "aba587647a85adcb713126859279a3463641ade4be2e1ef582f58729b249b258"
+}

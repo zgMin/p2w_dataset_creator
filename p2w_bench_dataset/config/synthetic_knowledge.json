@@ -1,0 +1,34 @@
+{
+  "zh": [
+    {
+      "source_id": "synthetic_zh_fictional_001",
+      "subtype": "fictional_multihop",
+      "context": "在虚构的澄星档案中，霁川站由青岑计划建造。青岑计划的总设计师是林砚秋，计划于2037年4月12日正式启动。",
+      "query": "霁川站所属计划的总设计师是谁？",
+      "gold_answers": ["林砚秋"]
+    },
+    {
+      "source_id": "synthetic_zh_counterfactual_001",
+      "subtype": "counterfactual",
+      "context": "仅在本测试设定中，水星拥有三颗卫星，分别名为澄、砾和弦。回答时以本测试设定为准，而不是采用现实世界的天文学知识。",
+      "query": "按照本测试设定，水星有多少颗卫星？",
+      "gold_answers": ["三颗", "3颗", "3"]
+    }
+  ],
+  "en": [
+    {
+      "source_id": "synthetic_en_fictional_001",
+      "subtype": "fictional_multihop",
+      "context": "In the fictional Northglass archive, Lumen Station was built under Project Alder. The chief designer of Project Alder was Mira Solen, and the project formally began on April 12, 2037.",
+      "query": "Who was the chief designer of the project that built Lumen Station?",
+      "gold_answers": ["Mira Solen"]
+    },
+    {
+      "source_id": "synthetic_en_counterfactual_001",
+      "subtype": "counterfactual",
+      "context": "Only in this test setting, Mercury has three moons named Clear, Flint, and Chord. Answers must follow this test setting rather than real-world astronomy.",
+      "query": "According to the test setting, how many moons does Mercury have?",
+      "gold_answers": ["three", "3"]
+    }
+  ]
+}

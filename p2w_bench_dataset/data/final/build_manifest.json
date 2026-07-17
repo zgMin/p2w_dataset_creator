@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "seed": 20260714,
+  "files": {
+    "queries_zh.jsonl": {
+      "bytes": 19110,
+      "sha256": "e8e707ed4e5b4af93c2c9d95345a4dec565976086b70b7746bff04d2762cea40"
+    },
+    "queries_en.jsonl": {
+      "bytes": 23329,
+      "sha256": "2a1af0b91a075194230f295d278973479dd6daa5fbe714365e88a2c6a6a9c7fe"
+    },
+    "prompt_groups.jsonl": {
+      "bytes": 53138,
+      "sha256": "0888396c1a8cef6c2ef224f0cbcc769764f30e2cfe42e73231b7c610c861000c"
+    },
+    "prompt_variants.jsonl": {
+      "bytes": 171498,
+      "sha256": "f6610fc95c7178e32800bb70bd8125223402173fa28f4dd59126cb4a206dbe03"
+    },
+    "pairings.jsonl": {
+      "bytes": 111861,
+      "sha256": "8b086751b69ff02e3f6fd20ce5adf40b3fbad70f1a3eaf186629efe4832ec621"
+    },
+    "dataset.jsonl": {
+      "bytes": 349622,
+      "sha256": "e56d70d585d3e9015d352bd842d68d07fa6bb24c2f46d16f282cd496e8af2fdc"
+    },
+    "stats.json": {
+      "bytes": 1103,
+      "sha256": "fcbbb634130737f45d13f61bb5b3063d5fb61564ab687aed7f8430d0ada238da"
+    },
+    "sources.json": {
+      "bytes": 3406,
+      "sha256": "e0cd9bccfde50853580164b13aaa6ebcb8e9aa3f859ed3caa291e61355898494"
+    }
+  }
+}

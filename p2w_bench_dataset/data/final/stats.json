@@ -1,0 +1,50 @@
+{
+  "version": "0.2.0",
+  "seed": 20260714,
+  "query_count": 92,
+  "prompt_group_count": 68,
+  "prompt_variant_count": 204,
+  "pairing_count": 276,
+  "public_query_count": 88,
+  "public_query_ratio": 0.9565217391304348,
+  "counts_by_language_family": {
+    "zh/knowledge": 12,
+    "zh/descriptive": 18,
+    "zh/style": 6,
+    "zh/format": 6,
+    "zh/output_control": 4,
+    "en/knowledge": 12,
+    "en/descriptive": 18,
+    "en/style": 6,
+    "en/format": 6,
+    "en/output_control": 4
+  },
+  "prompt_groups_by_language_family": {
+    "zh/knowledge": 12,
+    "zh/descriptive": 6,
+    "zh/style": 6,
+    "zh/format": 6,
+    "zh/output_control": 4,
+    "en/knowledge": 12,
+    "en/descriptive": 6,
+    "en/style": 6,
+    "en/format": 6,
+    "en/output_control": 4
+  },
+  "counts_by_source": {
+    "belle_seed": 34,
+    "cmrc2018": 5,
+    "dolly": 34,
+    "drcd": 5,
+    "squad": 10,
+    "synthetic": 4
+  },
+  "counts_by_language_length": {
+    "zh/short": 34,
+    "zh/medium_redundant": 34,
+    "zh/long_redundant": 34,
+    "en/short": 34,
+    "en/medium_redundant": 34,
+    "en/long_redundant": 34
+  }
+}

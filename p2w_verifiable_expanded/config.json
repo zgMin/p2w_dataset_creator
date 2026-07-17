@@ -1,0 +1,60 @@
+{
+  "version": "1.1.0",
+  "seed": 20260715,
+  "base_rows": {
+    "length_variant": "short",
+    "limit": 24
+  },
+  "additional_counts": {
+    "natural_questions": 12,
+    "triviaqa": 12,
+    "relation_extraction": 12,
+    "cmrc2018": 18,
+    "drcd": 18
+  },
+  "selection": {
+    "max_english_context_words": 130,
+    "max_chinese_context_chars": 180,
+    "max_answer_words": 10,
+    "max_answer_chars": 48,
+    "max_query_words": 32,
+    "max_query_chars": 96
+  },
+  "sources": {
+    "natural_questions": {
+      "parser": "mrqa",
+      "url": "https://s3.us-east-2.amazonaws.com/mrqa/release/v2/dev/NaturalQuestionsShort.jsonl.gz",
+      "filename": "NaturalQuestionsShort-dev.jsonl.gz",
+      "homepage": "https://mrqa.github.io/2019/shared",
+      "license": "MRQA redistribution; retain Natural Questions upstream terms"
+    },
+    "triviaqa": {
+      "parser": "mrqa",
+      "url": "https://s3.us-east-2.amazonaws.com/mrqa/release/v2/dev/TriviaQA-web.jsonl.gz",
+      "filename": "TriviaQA-web-dev.jsonl.gz",
+      "homepage": "https://mrqa.github.io/2019/shared",
+      "license": "MRQA redistribution; retain TriviaQA upstream terms"
+    },
+    "relation_extraction": {
+      "parser": "mrqa",
+      "url": "https://s3.us-east-2.amazonaws.com/mrqa/release/v2/dev/RelationExtraction.jsonl.gz",
+      "filename": "RelationExtraction-dev.jsonl.gz",
+      "homepage": "https://mrqa.github.io/2019/shared",
+      "license": "MRQA redistribution; retain RelationExtraction upstream terms"
+    },
+    "cmrc2018": {
+      "parser": "squad_zh",
+      "url": "https://raw.githubusercontent.com/ymcui/cmrc2018/master/squad-style-data/cmrc2018_dev.json",
+      "filename": "cmrc2018_dev.json",
+      "homepage": "https://github.com/ymcui/cmrc2018",
+      "license": "CC BY-SA 4.0"
+    },
+    "drcd": {
+      "parser": "squad_zh",
+      "url": "https://raw.githubusercontent.com/DRCKnowledgeTeam/DRCD/master/DRCD_dev.json",
+      "filename": "drcd_dev.json",
+      "homepage": "https://github.com/DRCKnowledgeTeam/DRCD",
+      "license": "CC BY-SA 3.0"
+    }
+  }
+}

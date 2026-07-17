@@ -1,0 +1,42 @@
+{
+  "natural_questions": {
+    "parser": "mrqa",
+    "url": "https://s3.us-east-2.amazonaws.com/mrqa/release/v2/dev/NaturalQuestionsShort.jsonl.gz",
+    "filename": "NaturalQuestionsShort-dev.jsonl.gz",
+    "homepage": "https://mrqa.github.io/2019/shared",
+    "license": "MRQA redistribution; retain Natural Questions upstream terms",
+    "sha256": "2ba8b2181b520f81b49d62c0e4a23819f33d5dec0e8cf4a623edcda0feb73530"
+  },
+  "triviaqa": {
+    "parser": "mrqa",
+    "url": "https://s3.us-east-2.amazonaws.com/mrqa/release/v2/dev/TriviaQA-web.jsonl.gz",
+    "filename": "TriviaQA-web-dev.jsonl.gz",
+    "homepage": "https://mrqa.github.io/2019/shared",
+    "license": "MRQA redistribution; retain TriviaQA upstream terms",
+    "sha256": "faf8add436de5a5fa81071a4e7190850d7e9a20acc811439e8a127ba8ec25640"
+  },
+  "relation_extraction": {
+    "parser": "mrqa",
+    "url": "https://s3.us-east-2.amazonaws.com/mrqa/release/v2/dev/RelationExtraction.jsonl.gz",
+    "filename": "RelationExtraction-dev.jsonl.gz",
+    "homepage": "https://mrqa.github.io/2019/shared",
+    "license": "MRQA redistribution; retain RelationExtraction upstream terms",
+    "sha256": "845668398356208246605fa1f363de63b45848c946d56514edcc8d00d12530ea"
+  },
+  "cmrc2018": {
+    "parser": "squad_zh",
+    "url": "https://raw.githubusercontent.com/ymcui/cmrc2018/master/squad-style-data/cmrc2018_dev.json",
+    "filename": "cmrc2018_dev.json",
+    "homepage": "https://github.com/ymcui/cmrc2018",
+    "license": "CC BY-SA 4.0",
+    "sha256": "e9ff74231f05c230c6fa88b84441ee334d97234cbb610991cd94b82db00c7f1f"
+  },
+  "drcd": {
+    "parser": "squad_zh",
+    "url": "https://raw.githubusercontent.com/DRCKnowledgeTeam/DRCD/master/DRCD_dev.json",
+    "filename": "drcd_dev.json",
+    "homepage": "https://github.com/DRCKnowledgeTeam/DRCD",
+    "license": "CC BY-SA 3.0",
+    "sha256": "e236df03861ba241bd7b29628cd48b3b8e339c60137e041a4358b5320ed61928"
+  }
+}

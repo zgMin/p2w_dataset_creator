@@ -1,0 +1,88 @@
+{
+  "version": "0.2.0",
+  "seed": 20260714,
+  "languages": ["zh", "en"],
+  "counts_per_language": {
+    "knowledge_public": 10,
+    "knowledge_synthetic": 2,
+    "descriptive": 6,
+    "style": 6,
+    "format": 6,
+    "output_control": 4
+  },
+  "queries_per_instruction": {
+    "knowledge": 1,
+    "descriptive": 3,
+    "style": 1,
+    "format": 1,
+    "output_control": 1
+  },
+  "length_variants": {
+    "short": {"min_tokens": 30, "max_tokens": 95},
+    "medium_redundant": {"min_tokens": 90, "max_tokens": 150},
+    "long_redundant": {"min_tokens": 180, "max_tokens": 280}
+  },
+  "selection": {
+    "min_query_tokens": 3,
+    "max_query_tokens": 140,
+    "max_answer_tokens": 24,
+    "max_source_context_tokens": 48
+  },
+  "knowledge_source_weights": {
+    "zh": {"cmrc2018": 0.5, "drcd": 0.5},
+    "en": {"squad": 1.0}
+  },
+  "sources": {
+    "squad": {
+      "language": "en",
+      "kind": "knowledge",
+      "url": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v1.1.json",
+      "filename": "squad_dev_v1.1.json",
+      "homepage": "https://rajpurkar.github.io/SQuAD-explorer/",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+      "source_role": "English extractive knowledge queries, passages, and gold answers"
+    },
+    "dolly": {
+      "language": "en",
+      "kind": "general_queries",
+      "url": "https://raw.githubusercontent.com/databrickslabs/dolly/2305eb7f2f4b3beb2379f34c6addf335b46c4b43/data/databricks-dolly-15k.jsonl",
+      "filename": "databricks_dolly_15k.jsonl",
+      "homepage": "https://github.com/databrickslabs/dolly",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/legalcode",
+      "source_role": "English descriptive and general-purpose queries"
+    },
+    "cmrc2018": {
+      "language": "zh",
+      "kind": "knowledge",
+      "url": "https://raw.githubusercontent.com/ymcui/cmrc2018/master/squad-style-data/cmrc2018_dev.json",
+      "filename": "cmrc2018_dev.json",
+      "homepage": "https://ymcui.com/cmrc2018/",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://github.com/ymcui/cmrc2018/blob/master/LICENCE",
+      "source_role": "Simplified-Chinese extractive knowledge queries, passages, and gold answers"
+    },
+    "drcd": {
+      "language": "zh",
+      "kind": "knowledge",
+      "url": "https://raw.githubusercontent.com/DRCKnowledgeTeam/DRCD/master/DRCD_dev.json",
+      "filename": "drcd_dev.json",
+      "homepage": "https://github.com/DRCKnowledgeTeam/DRCD",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "source_role": "Traditional-Chinese extractive knowledge queries, passages, and gold answers"
+    },
+    "belle_seed": {
+      "language": "zh",
+      "kind": "general_queries",
+      "url": "https://raw.githubusercontent.com/LianjiaTech/BELLE/main/data/1.5M/zh_seed_tasks.json",
+      "filename": "belle_zh_seed_tasks.jsonl",
+      "homepage": "https://github.com/LianjiaTech/BELLE",
+      "license": "Research-only and non-commercial per BELLE data terms",
+      "license_url": "https://github.com/LianjiaTech/BELLE/blob/main/data/1.5M/README.md",
+      "source_role": "Chinese descriptive and general-purpose queries",
+      "code_license_note": "The repository code is Apache-2.0; this does not replace the data-specific research-only terms."
+    }
+  }
+}
