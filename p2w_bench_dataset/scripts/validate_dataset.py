@@ -24,6 +24,11 @@ def unique_index(rows: list[dict[str, Any]], key: str) -> dict[str, dict[str, An
     return result
 
 
+def length_bounds(config: dict[str, Any], family: str, variant_name: str) -> dict[str, int]:
+    family_bounds = config.get("length_variants_by_family", {}).get(family, {})
+    return family_bounds.get(variant_name, config["length_variants"][variant_name])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Validate P2W-Bench structure and construction invariants.")
     parser.add_argument("--config", type=Path, default=ROOT / "benchmark_config.json")
@@ -101,7 +106,7 @@ def main() -> None:
     for row in variants:
         assert row["prompt_group_id"] in group_index
         by_group[row["prompt_group_id"]].append(row)
-        bounds = config["length_variants"][row["length_variant"]]
+        bounds = length_bounds(config, row["task_family"], row["length_variant"])
         assert bounds["min_tokens"] <= row["prompt_approx_tokens"] <= bounds["max_tokens"], (
             row["prompt_variant_id"],
             row["prompt_approx_tokens"],

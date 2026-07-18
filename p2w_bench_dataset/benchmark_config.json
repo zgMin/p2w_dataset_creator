@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "seed": 20260714,
   "languages": ["zh", "en"],
   "counts_per_language": {
@@ -12,7 +12,7 @@
   },
   "queries_per_instruction": {
     "knowledge": 1,
-    "descriptive": 3,
+    "descriptive": 5,
     "style": 1,
     "format": 1,
     "output_control": 1
@@ -21,6 +21,13 @@
     "short": {"min_tokens": 30, "max_tokens": 95},
     "medium_redundant": {"min_tokens": 90, "max_tokens": 150},
     "long_redundant": {"min_tokens": 180, "max_tokens": 280}
+  },
+  "length_variants_by_family": {
+    "descriptive": {
+      "short": {"min_tokens": 8, "max_tokens": 28},
+      "medium_redundant": {"min_tokens": 29, "max_tokens": 55},
+      "long_redundant": {"min_tokens": 60, "max_tokens": 130}
+    }
   },
   "selection": {
     "min_query_tokens": 3,

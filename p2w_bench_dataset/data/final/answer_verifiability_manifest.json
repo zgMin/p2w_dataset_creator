@@ -1,11 +1,11 @@
 {
   "criterion": "A row is answer-verifiable iff gold_answers is a non-empty list.",
   "source_file": "dataset.jsonl",
-  "source_count": 276,
+  "source_count": 348,
   "answer_verifiable": {
     "file": "answer_verifiable.jsonl",
     "count": 72,
-    "sha256": "f36fa30101238619399a50d8e6efac6b80cdfca06684ebbe8789d493b3e9a9a7",
+    "sha256": "2c05684e9e76123c05822616f8bccef81a369158d0276c0c7d52928a41efcb33",
     "by_language": {
       "en": 36,
       "zh": 36
@@ -18,14 +18,14 @@
   },
   "answer_nonverifiable": {
     "file": "answer_nonverifiable.jsonl",
-    "count": 204,
-    "sha256": "17ab9eddf7251f3a17f6db364523c09a8feafdaa758a5797ae6644b32b5adfe3",
+    "count": 276,
+    "sha256": "489e781636896dd76678572424cd30da516a4cc90bfb942287f941b3e28915ea",
     "by_language": {
-      "en": 102,
-      "zh": 102
+      "en": 138,
+      "zh": 138
     },
     "by_task_family": {
-      "descriptive": 108,
+      "descriptive": 180,
       "format": 36,
       "output_control": 24,
       "style": 36

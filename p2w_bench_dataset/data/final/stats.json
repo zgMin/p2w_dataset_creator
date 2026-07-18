@@ -1,20 +1,20 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "seed": 20260714,
-  "query_count": 92,
+  "query_count": 116,
   "prompt_group_count": 68,
   "prompt_variant_count": 204,
-  "pairing_count": 276,
-  "public_query_count": 88,
-  "public_query_ratio": 0.9565217391304348,
+  "pairing_count": 348,
+  "public_query_count": 112,
+  "public_query_ratio": 0.9655172413793104,
   "counts_by_language_family": {
     "zh/knowledge": 12,
-    "zh/descriptive": 18,
+    "zh/descriptive": 30,
     "zh/style": 6,
     "zh/format": 6,
     "zh/output_control": 4,
     "en/knowledge": 12,
-    "en/descriptive": 18,
+    "en/descriptive": 30,
     "en/style": 6,
     "en/format": 6,
     "en/output_control": 4
@@ -32,9 +32,9 @@
     "en/output_control": 4
   },
   "counts_by_source": {
-    "belle_seed": 34,
+    "belle_seed": 46,
     "cmrc2018": 5,
-    "dolly": 34,
+    "dolly": 46,
     "drcd": 5,
     "squad": 10,
     "synthetic": 4

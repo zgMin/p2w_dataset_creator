@@ -36,26 +36,27 @@ python3 scripts/validate_dataset.py
 |---|---:|---:|---:|
 | 公共知识问答 | 10 | 1 | 10 |
 | 虚构或反事实知识 | 2 | 1 | 2 |
-| 描述性任务 | 6 | 3 | 18 |
+| 描述性任务 | 6 | 5 | 30 |
 | 风格约束 | 6 | 1 | 6 |
 | 格式约束 | 6 | 1 | 6 |
 | 输出控制 | 4 | 1 | 4 |
-| 合计 | 34 | - | 46 |
+| 合计 | 34 | - | 58 |
 
-每个样本组具有三档语义不变的冗余 prompt：
+每个样本组具有三档语义不变 prompt。描述性任务采用人工编写的自然语义扩写：short 只陈述核心要求，medium 增加助手角色和任务解释，long 进一步解释该要求的含义与目的，但不机械重复原句，也不加入新约束。
 
-- `short`：30-95 个近似 token（知识类保留完整的局部证据窗口）。
-- `medium_redundant`：90-150 个近似 token。
-- `long_redundant`：180-280 个近似 token。
+- 描述性 `short`：8-28 个近似 token。
+- 描述性 `medium_redundant`：29-55 个近似 token。
+- 描述性 `long_redundant`：60-130 个近似 token。
+- 其他任务默认仍为 30-95、90-150、180-280；知识类允许保留完整的局部证据窗口。
 
-中英文共 68 个 prompt group、92 个 query、204 个 prompt variant 和 276 个 prompt-query 配对。描述性任务中，同一指令的三个长度版本会分别与该指令下的三个查询组合。近似 token 统计不依赖模型；实验阶段可额外使用目标模型 tokenizer 记录精确 token 数。
+中英文共 68 个 prompt group、116 个 query、204 个 prompt variant 和 348 个 prompt-query 配对。描述性任务中，同一指令的三个长度版本会分别与该指令下的五个查询组合。近似 token 统计不依赖模型；实验阶段可额外使用目标模型 tokenizer 记录精确 token 数。
 
 ## 目录
 
 ```text
 benchmark_config.json          样本数量、长度范围、下载地址
 config/
-  prompt_templates.json        风格、格式和输出控制模板
+  prompt_templates.json        描述、风格、格式和输出控制模板及描述性三档自然扩写
   synthetic_knowledge.json     少量虚构与反事实知识
 data/
   raw/                         下载的公共原始数据和校验清单
@@ -87,6 +88,7 @@ DATA_SCHEMA.md                 全部配置、数据和 validator 字段说明
 - `build_manifest.json`：最终数据文件的大小与 SHA-256。
 - `answer_verifiable.jsonl`：`gold_answers` 非空的答案可验证部分。
 - `answer_nonverifiable.jsonl`：没有独立标准答案、主要与 full prompt 比较的部分。
+- `descriptive_semantic_lengths.jsonl`：仅包含 180 条自然语义扩写描述性 pairing，可直接用于多长度实验。
 - `answer_verifiability_manifest.json`：两部分的判定规则、数量和 SHA-256。
 
 数据中不会出现 `full_input` 或 `full_prompt_output` 字段。
@@ -97,7 +99,7 @@ DATA_SCHEMA.md                 全部配置、数据和 validator 字段说明
 
 增加新的 prompt 类型时：
 
-1. 在 `config/prompt_templates.json` 添加模板和 validator 描述。
+1. 在 `config/prompt_templates.json` 添加模板和 validator 描述；描述性模板还需提供完整的三档 `variant_prompts`。
 2. 在 `build_dataset.py` 中注册新的 family 配额。
 3. 在 `src/p2w_bench/output_validators.py` 添加对应验证逻辑。
 
@@ -106,10 +108,10 @@ DATA_SCHEMA.md                 全部配置、数据和 validator 字段说明
 ## 数据来源
 
 - SQuAD：10 个英文知识 query。
-- Databricks Dolly 15K：34 个英文描述与通用 query 分配记录。
+- Databricks Dolly 15K：46 个英文描述与通用 query 分配记录。
 - CMRC 2018：5 个简体中文知识 query。
 - DRCD：5 个繁体中文知识 query。
-- BELLE seed tasks：34 个中文描述与通用 query 分配记录；安全池共 26 个上游 query，允许不同指令复用，不允许同一指令内重复。
+- BELLE seed tasks：46 个中文描述与通用 query 分配记录；安全池共 26 个上游 query，允许不同指令复用，不允许同一指令内重复。
 - 本项目合成：中英文各 2 个虚构或反事实知识 query。
 
 完整来源、实际文件、构造边界和许可证说明见 [DATA_SOURCES.md](DATA_SOURCES.md)。其中 BELLE 的数据条款要求仅研究、非商业使用，不能用其代码仓库的 Apache-2.0 许可证替代。发布或再分发数据前，应重新核对各上游条款。`data/raw/download_manifest.json` 保存了本次实际下载文件的来源与校验和。

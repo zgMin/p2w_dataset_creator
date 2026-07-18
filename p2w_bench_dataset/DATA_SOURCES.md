@@ -1,18 +1,18 @@
 # 数据来源与构造边界
 
-本文档说明 P2W-Bench-ZHEN v0.2 中哪些内容来自公共数据、哪些内容由本项目构造，以及如何追溯每条样本。
+本文档说明 P2W-Bench-ZHEN v0.3 中哪些内容来自公共数据、哪些内容由本项目构造，以及如何追溯每条样本。
 
 ## 来源总览
 
-当前默认配置包含 68 个 prompt group 和 92 个 query 分配记录，其中 88 个使用公共查询，4 个为本项目构造的虚构或反事实知识样本。默认版本的实际数量如下：
+当前默认配置包含 68 个 prompt group 和 116 个 query 分配记录，其中 112 个使用公共查询，4 个为本项目构造的虚构或反事实知识样本。默认版本的实际数量如下：
 
 | 来源 | 语言 | 使用部分 | 在本数据集中的用途 | 入选 query | 数据许可或使用条件 |
 |---|---|---|---|---:|---|
 | SQuAD 1.1 | 英文 | `dev-v1.1` | 英文知识 query、证据段落、gold answer | 10 | CC BY-SA 4.0 |
-| Databricks Dolly 15K | 英文 | 完整公开 JSONL 中筛选 | 英文描述性和通用 query | 34 | CC BY-SA 3.0 |
+| Databricks Dolly 15K | 英文 | 完整公开 JSONL 中筛选 | 英文描述性和通用 query | 46 | CC BY-SA 3.0 |
 | CMRC 2018 | 简体中文 | `dev`，SQuAD-style | 中文知识 query、证据段落、gold answer | 5 | CC BY-SA 4.0 |
 | DRCD | 繁体中文 | `dev` | 中文知识 query、证据段落、gold answer | 5 | CC BY-SA 3.0 |
-| BELLE 1.5M seed tasks | 中文 | 175 个 seed tasks | 中文描述性和通用 query 分配 | 34 | 仅研究、非商业使用，依其数据目录说明 |
+| BELLE 1.5M seed tasks | 中文 | 175 个 seed tasks | 中文描述性和通用 query 分配 | 46 | 仅研究、非商业使用，依其数据目录说明 |
 | 本项目合成 | 中英文 | `config/synthetic_knowledge.json` | 虚构知识与反事实知识 | 4 | 本项目构造 |
 
 这里的“入选 query”指指令组内的 query 分配记录；每个 query 会再配三个 prompt 长度版本。中文通用部分从 26 条安全 BELLE query 中分配，允许不同指令复用同一上游 query，因此上游唯一 query 数可能小于分配记录数。
@@ -87,7 +87,7 @@
 - `medium_redundant`
 - `long_redundant`
 
-扩写只重复同一事实或同一要求，不调用 LLM，不引入 distractor，也不使用公共数据中的 response 作为扩写内容。
+描述性 prompt 的三档文本在 `prompt_templates.json` 中人工编写：short 保留核心指令，medium 使用自然的助手角色和任务解释展开，long 进一步解释同一要求的含义和目标。它们不复制原句、不调用 LLM、不引入新的行为约束，也不使用公共数据中的 response。知识等其他任务仍可通过事实或要求的同义冗余扩写。
 
 ## 样本追溯
 

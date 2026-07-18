@@ -420,11 +420,28 @@ def query_record(
     }
 
 
-def template_fields(item: Any, family: str, local_index: int) -> tuple[str, str, dict[str, Any]]:
+def template_fields(
+    item: Any,
+    family: str,
+    local_index: int,
+) -> tuple[str, str, dict[str, Any], dict[str, str] | None]:
     if isinstance(item, str):
-        return item, f"{family}_{local_index + 1}", {"type": "full_prompt_similarity"}
+        return item, f"{family}_{local_index + 1}", {"type": "full_prompt_similarity"}, None
     core = str(item["text"])
-    return core, str(item["name"]), item.get("validator", {"type": "full_prompt_similarity"})
+    variant_prompts = item.get("variant_prompts")
+    if variant_prompts is not None:
+        variant_prompts = {str(name): str(text) for name, text in variant_prompts.items()}
+    return (
+        core,
+        str(item["name"]),
+        item.get("validator", {"type": "full_prompt_similarity"}),
+        variant_prompts,
+    )
+
+
+def length_bounds(config: dict[str, Any], family: str, variant_name: str) -> dict[str, int]:
+    family_bounds = config.get("length_variants_by_family", {}).get(family, {})
+    return family_bounds.get(variant_name, config["length_variants"][variant_name])
 
 
 def build_language(
@@ -531,9 +548,16 @@ def build_language(
         for local_index, item in enumerate(template_items[: counts[family]]):
             family_counters[family] += 1
             base_id = f"{language}-{family.replace('_', '-')}-{family_counters[family]:03d}"
-            core, subtype, validator = template_fields(item, family, local_index)
+            core, subtype, validator, variant_prompts = template_fields(item, family, local_index)
             restatement = make_restatement(language, family, core)
             semantic_payload = {"constraint": core, "subtype": subtype}
+            if variant_prompts is not None:
+                expected_variants = set(config["length_variants"])
+                if set(variant_prompts) != expected_variants:
+                    raise ValueError(
+                        f"{language}/{family}/{subtype} variant_prompts must contain "
+                        f"{sorted(expected_variants)}, got {sorted(variant_prompts)}"
+                    )
             groups.append(
                 {
                     "prompt_group_id": base_id,
@@ -542,6 +566,7 @@ def build_language(
                     "subtype": subtype,
                     "core_prompt": core,
                     "restatement": restatement,
+                    "variant_prompts": variant_prompts,
                     "core_facts": [],
                     "core_constraint": core,
                     "semantic_signature": semantic_hash(semantic_payload),
@@ -578,14 +603,27 @@ def build_variants_and_pairings(
         )
         if not assigned_queries:
             raise ValueError(f"Prompt group has no assigned query: {group['prompt_group_id']}")
-        for variant_name, bounds in config["length_variants"].items():
-            prompt = fit_redundant_variant(
-                group["core_prompt"],
-                group["restatement"],
-                group["language"],
-                bounds["min_tokens"],
-                bounds["max_tokens"],
-            )
+        for variant_name in config["length_variants"]:
+            bounds = length_bounds(config, group["task_family"], variant_name)
+            custom_prompts = group.get("variant_prompts")
+            if custom_prompts is not None:
+                prompt = custom_prompts[variant_name]
+                expansion_type = "semantic_elaboration"
+            else:
+                prompt = fit_redundant_variant(
+                    group["core_prompt"],
+                    group["restatement"],
+                    group["language"],
+                    bounds["min_tokens"],
+                    bounds["max_tokens"],
+                )
+                expansion_type = "redundant"
+            prompt_tokens = approx_token_count(prompt, group["language"])
+            if not bounds["min_tokens"] <= prompt_tokens <= bounds["max_tokens"]:
+                raise ValueError(
+                    f"{group['prompt_group_id']}--{variant_name} has {prompt_tokens} approximate "
+                    f"tokens, outside [{bounds['min_tokens']}, {bounds['max_tokens']}]"
+                )
             variant_id = f"{group['prompt_group_id']}--{variant_name}"
             variant = {
                 "prompt_variant_id": variant_id,
@@ -594,9 +632,9 @@ def build_variants_and_pairings(
                 "task_family": group["task_family"],
                 "subtype": group["subtype"],
                 "length_variant": variant_name,
-                "expansion_type": "redundant",
+                "expansion_type": expansion_type,
                 "prompt": prompt,
-                "prompt_approx_tokens": approx_token_count(prompt, group["language"]),
+                "prompt_approx_tokens": prompt_tokens,
                 "semantic_signature": group["semantic_signature"],
             }
             variants.append(variant)
@@ -618,6 +656,7 @@ def build_variants_and_pairings(
                 flattened.append(
                     {
                         **pairing,
+                        "expansion_type": expansion_type,
                         "prompt": prompt,
                         "query": query["query"],
                         "prompt_approx_tokens": variant["prompt_approx_tokens"],
@@ -675,6 +714,10 @@ def main() -> None:
     write_jsonl(args.output_dir / "prompt_variants.jsonl", variants)
     write_jsonl(args.output_dir / "pairings.jsonl", pairings)
     write_jsonl(args.output_dir / "dataset.jsonl", flattened)
+    write_jsonl(
+        args.output_dir / "descriptive_semantic_lengths.jsonl",
+        (row for row in flattened if row["task_family"] == "descriptive"),
+    )
 
     family_counts = Counter((row["language"], row["task_family"]) for row in all_queries)
     group_family_counts = Counter((row["language"], row["task_family"]) for row in all_groups)
@@ -716,6 +759,7 @@ def main() -> None:
         "prompt_variants.jsonl",
         "pairings.jsonl",
         "dataset.jsonl",
+        "descriptive_semantic_lengths.jsonl",
         "stats.json",
         "sources.json",
     ]

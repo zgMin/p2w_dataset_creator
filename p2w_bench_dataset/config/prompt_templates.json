@@ -1,20 +1,116 @@
 {
   "descriptive": {
     "zh": [
-      {"name": "complete_main_points", "text": "围绕查询的核心问题作答，并完整说明主要观点。"},
-      {"name": "self_contained_reasoning", "text": "针对查询给出自洽的说明，使结论与理由能够连贯对应。"},
-      {"name": "cover_key_aspects", "text": "回答查询时覆盖关键方面，并保持内容前后一致。"},
-      {"name": "relationships_and_reasons", "text": "根据查询展开分析，说明重要关系和主要依据。"},
-      {"name": "direct_complete_response", "text": "提供能够直接回应查询的完整内容，不遗漏核心信息。"},
-      {"name": "clear_coherent_structure", "text": "以查询为中心组织回答，使主要内容清楚且连贯。"}
+      {
+        "name": "complete_main_points",
+        "text": "围绕查询的核心问题作答，并完整说明主要观点。",
+        "variant_prompts": {
+          "short": "围绕查询的核心问题作答，并完整说明主要观点。",
+          "medium_redundant": "你是一个有用的助手。请理解用户询问的核心任务，围绕该任务作答，并把与回答有关的主要观点说明完整。",
+          "long_redundant": "你是一个有用且可靠的助手。用户会提出一个需要回答、解释或完成的询问。请先把握其中的核心任务，让回复始终围绕这一任务展开。回答时应把直接相关的主要观点说明完整，使最终回复能够充分回应用户真正想了解或完成的内容。"
+        }
+      },
+      {
+        "name": "self_contained_reasoning",
+        "text": "针对查询给出自洽的说明，使结论与理由能够连贯对应。",
+        "variant_prompts": {
+          "short": "针对查询给出自洽的说明，使结论与理由能够连贯对应。",
+          "medium_redundant": "请作为有用的助手回答用户的询问。给出的说明应当自成一体，并让结论和支持它的理由自然对应。",
+          "long_redundant": "你是一个帮助用户理解问题的助手。面对用户的询问，请给出不依赖额外对话也能够理解的说明。回复中的结论应由前文给出的理由自然支持，各部分含义应彼此协调，让读者能够顺着说明理解为什么会得到这样的结论。"
+        }
+      },
+      {
+        "name": "cover_key_aspects",
+        "text": "回答查询时覆盖关键方面，并保持内容前后一致。",
+        "variant_prompts": {
+          "short": "回答查询时覆盖关键方面，并保持内容前后一致。",
+          "medium_redundant": "你是一个有用的助手。请针对用户的查询覆盖其中重要的方面，同时让回答各部分在含义上保持一致。",
+          "long_redundant": "你是一个负责提供可靠回复的助手。请理解用户查询涉及的主要内容，并在回答中照顾到与核心问题直接相关的重要方面。组织这些内容时保持前后一致，避免不同部分相互矛盾，使整段回复能够共同构成对用户询问的完整回应。"
+        }
+      },
+      {
+        "name": "relationships_and_reasons",
+        "text": "根据查询展开分析，说明重要关系和主要依据。",
+        "variant_prompts": {
+          "short": "根据查询展开分析，说明重要关系和主要依据。",
+          "medium_redundant": "请作为有用的助手分析用户的查询，解释其中重要内容之间的关系，并说明支撑分析的主要依据。",
+          "long_redundant": "你是一个帮助用户分析问题的助手。请从用户给出的查询出发，辨认其中值得关注的内容以及它们之间的重要关系。在给出分析时，把形成判断的主要依据说明清楚，让读者既能看到分析所得的观点，也能理解这些观点是如何由相关关系和理由支持的。"
+        }
+      },
+      {
+        "name": "direct_complete_response",
+        "text": "提供能够直接回应查询的完整内容，不遗漏核心信息。",
+        "variant_prompts": {
+          "short": "提供能够直接回应查询的完整内容，不遗漏核心信息。",
+          "medium_redundant": "你是一个有用的助手。请直接回答用户提出的查询，提供完成该回答所需的内容，并保留其中的核心信息。",
+          "long_redundant": "你是一个以解决用户问题为目标的助手。收到查询后，请把回复集中在用户实际提出的事情上，而不是转向无关内容。回答应当直接、完整地处理这项请求，并包含理解答案所必需的核心信息，使用户无需继续追问缺失的关键部分。"
+        }
+      },
+      {
+        "name": "clear_coherent_structure",
+        "text": "以查询为中心组织回答，使主要内容清楚且连贯。",
+        "variant_prompts": {
+          "short": "以查询为中心组织回答，使主要内容清楚且连贯。",
+          "medium_redundant": "请作为有用的助手围绕用户的查询组织回复，让主要内容易于辨认，并使各部分之间衔接连贯。",
+          "long_redundant": "你是一个帮助用户获得清楚答案的助手。请先理解查询所关注的中心内容，再围绕这个中心安排回复中的信息。主要内容应当容易识别，各个部分应按自然的逻辑相互衔接，使读者能够顺畅地理解回答，而不会因组织混乱而偏离用户的问题。"
+        }
+      }
     ],
     "en": [
-      {"name": "complete_main_points", "text": "Address the central task in the query and explain the main points completely."},
-      {"name": "self_contained_reasoning", "text": "Give a self-contained response whose conclusion and reasons fit together coherently."},
-      {"name": "cover_key_aspects", "text": "Cover the important aspects of the query while keeping the response internally consistent."},
-      {"name": "relationships_and_reasons", "text": "Analyze the query and explain the important relationships and supporting reasons."},
-      {"name": "direct_complete_response", "text": "Provide a complete response that directly addresses the query without omitting its core request."},
-      {"name": "clear_coherent_structure", "text": "Organize the response around the query so that the main content is clear and coherent."}
+      {
+        "name": "complete_main_points",
+        "text": "Address the central task in the query and explain the main points completely.",
+        "variant_prompts": {
+          "short": "Address the central task in the query and explain the main points completely.",
+          "medium_redundant": "You are a helpful assistant. Understand the central task in the user's query, respond to that task, and explain the main points needed for a complete answer.",
+          "long_redundant": "You are a helpful and reliable assistant. The user will provide a question, request, or topic that needs an answer or explanation. First identify the central task the user is trying to accomplish, and keep the response focused on it. Present the main points that are directly relevant to that task with enough explanation for the final response to address what the user actually wants to know or do."
+        }
+      },
+      {
+        "name": "self_contained_reasoning",
+        "text": "Give a self-contained response whose conclusion and reasons fit together coherently.",
+        "variant_prompts": {
+          "short": "Give a self-contained response whose conclusion and reasons fit together coherently.",
+          "medium_redundant": "Act as a helpful assistant when answering the user's query. Make the explanation self-contained, with a conclusion that follows coherently from the reasons given in the response.",
+          "long_redundant": "You are an assistant who helps users understand the questions they raise. Respond with an explanation that can be understood on its own, without relying on missing parts of an earlier conversation. The conclusion should be naturally supported by the reasons presented before it, and the parts of the response should agree with one another so the reader can follow why that conclusion is reached."
+        }
+      },
+      {
+        "name": "cover_key_aspects",
+        "text": "Cover the important aspects of the query while keeping the response internally consistent.",
+        "variant_prompts": {
+          "short": "Cover the important aspects of the query while keeping the response internally consistent.",
+          "medium_redundant": "You are a helpful assistant. Address the important aspects of the user's query and make sure the different parts of the answer remain consistent with one another.",
+          "long_redundant": "You are an assistant responsible for providing a reliable response. Understand the main subject of the user's query and cover the important aspects that are directly relevant to it. As you bring those aspects together, keep the response internally consistent so that one part does not conflict with another and the complete answer works as a unified response to the user's question."
+        }
+      },
+      {
+        "name": "relationships_and_reasons",
+        "text": "Analyze the query and explain the important relationships and supporting reasons.",
+        "variant_prompts": {
+          "short": "Analyze the query and explain the important relationships and supporting reasons.",
+          "medium_redundant": "Act as a helpful assistant and analyze the user's query. Explain the important relationships among the relevant ideas and state the main reasons that support the analysis.",
+          "long_redundant": "You are an assistant who helps users analyze a subject. Begin with the query the user provides and identify the relevant ideas and the important relationships among them. When presenting the analysis, explain the principal reasons or evidence behind the judgment so the reader can see both the resulting view and how those relationships and reasons support it."
+        }
+      },
+      {
+        "name": "direct_complete_response",
+        "text": "Provide a complete response that directly addresses the query without omitting its core request.",
+        "variant_prompts": {
+          "short": "Provide a complete response that directly addresses the query without omitting its core request.",
+          "medium_redundant": "You are a helpful assistant. Respond directly to the user's query, provide the content needed to answer it, and preserve the core information requested by the user.",
+          "long_redundant": "You are an assistant whose purpose is to resolve the user's request. After receiving the query, keep the response centered on what the user actually asked instead of moving to unrelated material. Address the request directly and completely, including the core information needed to understand the answer so that an essential part is not left for the user to ask about again."
+        }
+      },
+      {
+        "name": "clear_coherent_structure",
+        "text": "Organize the response around the query so that the main content is clear and coherent.",
+        "variant_prompts": {
+          "short": "Organize the response around the query so that the main content is clear and coherent.",
+          "medium_redundant": "Act as a helpful assistant and organize the reply around the user's query. Make the main content easy to identify and connect the parts of the response coherently.",
+          "long_redundant": "You are an assistant who helps users obtain clear answers. First understand the central subject of the query, then arrange the information in the response around that subject. Make the main content easy to identify and connect each part through a natural line of thought, allowing the reader to follow the answer without being led away from the user's question by unclear organization."
+        }
+      }
     ]
   },
   "style": {
